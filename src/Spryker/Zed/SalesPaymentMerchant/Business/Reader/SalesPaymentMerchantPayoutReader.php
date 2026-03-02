@@ -20,9 +20,6 @@ class SalesPaymentMerchantPayoutReader implements SalesPaymentMerchantPayoutRead
      */
     protected SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Persistence\SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository
-     */
     public function __construct(SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository)
     {
         $this->salesPaymentMerchantRepository = $salesPaymentMerchantRepository;
@@ -47,13 +44,6 @@ class SalesPaymentMerchantPayoutReader implements SalesPaymentMerchantPayoutRead
         return $this->salesPaymentMerchantRepository->getSalesPaymentMerchantPayoutCollection($salesPaymentMerchantPayoutCriteriaTransfer);
     }
 
-    /**
-     * @param string $orderReference
-     * @param string $merchantReference
-     * @param bool $isSuccessful
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutCollectionByMerchantAndOrderReference(
         string $orderReference,
         string $merchantReference,
@@ -119,11 +109,6 @@ class SalesPaymentMerchantPayoutReader implements SalesPaymentMerchantPayoutRead
         return $salesPaymentMerchantPayoutTransferTransferIdMapIndexedByItemReference;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutConditionsTransfer $salesPaymentMerchantPayoutConditionsTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCriteriaTransfer
-     */
     public function createPaymentMerchantPayoutCriteriaTransfer(
         SalesPaymentMerchantPayoutConditionsTransfer $salesPaymentMerchantPayoutConditionsTransfer
     ): SalesPaymentMerchantPayoutCriteriaTransfer {

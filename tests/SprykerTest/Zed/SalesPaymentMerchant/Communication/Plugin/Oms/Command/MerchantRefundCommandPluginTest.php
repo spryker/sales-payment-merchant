@@ -57,9 +57,6 @@ class MerchantRefundCommandPluginTest extends Unit
      */
     protected SalesPaymentMerchantCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGivenAnOrderWithOneOrderItemFromAMerchantWhenTheCommandIsExecutedAndThePaymentMethodDoesNotHaveTransferOfPaymentsEnabledTheCommandIsSkipped(): void
     {
         // Arrange
@@ -104,9 +101,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->tester->assertIsArray($response);
     }
 
-    /**
-     * @return void
-     */
     public function testGivenAnOrderWithOneOrderItemFromAMerchantWhenTheCommandIsExecutedAndTheExternalPSPReturnsASuccessfulResponseThenAllOrderItemsOfThisMerchantArePersisted(): void
     {
         // Arrange
@@ -164,9 +158,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->tester->assertSalesPaymentMerchantRefundEntity($merchantReference, $orderReference, [$salesOrderItemWithMerchant->getOrderItemReference()]);
     }
 
-    /**
-     * @return void
-     */
     public function testGivenAnOrderWithTwoOrderItemsFromDifferentMerchantsWhenTheCommandIsExecutedAndTheExternalPSPReturnsASuccessfulResponseThenAllOrderItemsOfThisMerchantArePersisted(): void
     {
         // Arrange
@@ -230,9 +221,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->tester->assertSalesPaymentMerchantRefundEntity($merchantReferenceOne, $orderReference, [$salesOrderItemWithMerchantOne->getOrderItemReference()]);
     }
 
-    /**
-     * @return void
-     */
     public function testMerchantPayoutReverseAmountCalculatorPluginIsCalled(): void
     {
         // Arrange
@@ -284,9 +272,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreSentToReverseWhenOrderExpenseIncludedInPaymentProcess(): void
     {
         // Arrange
@@ -348,9 +333,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->tester->assertSalesPaymentMerchantRefundEntity($merchantReferenceA, $orderReference, [$salesOrderItemWithMerchant->getOrderItemReference(), $expenseTransfer->getUuid()]);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentToReverseWhenOrderItemOfAnotherMerchantIsSentForMarketplaceOrder(): void
     {
         // Arrange
@@ -395,9 +377,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentToReverseWhenTheyAreNotRelatedToTheMerchantOrder(): void
     {
         // Arrange
@@ -441,9 +420,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesWithShipmentTypeAreNotSentWhenTheyAreExcludedForTheGivenStore(): void
     {
         // Arrange
@@ -483,9 +459,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentWhenOrderExpenseIncludedInPaymentProcessDisabled(): void
     {
         // Arrange
@@ -524,9 +497,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentWhenOrderHasUnRefusedItems(): void
     {
         // Arrange
@@ -569,9 +539,6 @@ class MerchantRefundCommandPluginTest extends Unit
         $this->runMerchantPayoutReverseCommandByOrderPlugin($salesOrderEntity);
     }
 
-    /**
-     * @return void
-     */
     protected function mockKernelAppFacadeMakeRequestOnce(): void
     {
         $transferRequestSenderMock = $this->createMock(KernelAppFacadeInterface::class);

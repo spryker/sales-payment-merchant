@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface TransferEndpointReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return string|null
-     */
     public function getTransferEndpointUrl(OrderTransfer $orderTransfer): ?string;
 }

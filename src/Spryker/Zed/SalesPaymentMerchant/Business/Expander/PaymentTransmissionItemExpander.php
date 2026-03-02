@@ -22,9 +22,6 @@ class PaymentTransmissionItemExpander implements PaymentTransmissionItemExpander
      */
     protected SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader
-     */
     public function __construct(SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader)
     {
         $this->salesPaymentMerchantPayoutReader = $salesPaymentMerchantPayoutReader;

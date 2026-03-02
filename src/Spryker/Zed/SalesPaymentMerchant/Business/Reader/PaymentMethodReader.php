@@ -29,10 +29,6 @@ class PaymentMethodReader implements PaymentMethodReaderInterface
      */
     protected SalesPaymentMerchantToSalesPaymentFacadeInterface $salesPaymentFacade;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToPaymentFacadeInterface $paymentFacade
-     * @param \Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSalesPaymentFacadeInterface $salesPaymentFacade
-     */
     public function __construct(
         SalesPaymentMerchantToPaymentFacadeInterface $paymentFacade,
         SalesPaymentMerchantToSalesPaymentFacadeInterface $salesPaymentFacade
@@ -41,11 +37,6 @@ class PaymentMethodReader implements PaymentMethodReaderInterface
         $this->salesPaymentFacade = $salesPaymentFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\PaymentMethodTransfer
-     */
     public function getPaymentMethodForOrder(OrderTransfer $orderTransfer): PaymentMethodTransfer
     {
         $salesPaymentTransfer = $this->getSalesPaymentTransfer($orderTransfer);
@@ -60,11 +51,6 @@ class PaymentMethodReader implements PaymentMethodReaderInterface
         return $paymentMethodTransferCollection->getPaymentMethods()->getIterator()->current();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentTransfer
-     */
     protected function getSalesPaymentTransfer(OrderTransfer $orderTransfer): SalesPaymentTransfer
     {
         $salesPaymentConditionsTransfer = new SalesPaymentConditionsTransfer();
@@ -78,11 +64,6 @@ class PaymentMethodReader implements PaymentMethodReaderInterface
         return $salesPaymentCollectionTransfer->getSalesPayments()->getIterator()->current();
     }
 
-    /**
-     * @param string $paymentMethodKey
-     *
-     * @return \Generated\Shared\Transfer\PaymentMethodCriteriaTransfer
-     */
     protected function createPaymentMethodCriteriaTransfer(string $paymentMethodKey): PaymentMethodCriteriaTransfer
     {
         $paymentMethodConditionsTransfer = new PaymentMethodConditionsTransfer();

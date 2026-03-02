@@ -14,12 +14,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 
 class SalesOrderMapper implements SalesOrderMapperInterface
 {
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function mapSalesOrderToOrderTransfer(
         SpySalesOrder $salesOrderEntity,
         OrderTransfer $orderTransfer
@@ -27,12 +21,6 @@ class SalesOrderMapper implements SalesOrderMapperInterface
         return $orderTransfer->fromArray($salesOrderEntity->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $salesOrderItemEntity
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     public function mapSalesOrderItemEntityToItemTransfer(
         SpySalesOrderItem $salesOrderItemEntity,
         ItemTransfer $itemTransfer

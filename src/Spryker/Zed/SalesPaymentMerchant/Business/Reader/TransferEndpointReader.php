@@ -22,19 +22,11 @@ class TransferEndpointReader implements TransferEndpointReaderInterface
      */
     protected PaymentMethodReaderInterface $paymentMethodReader;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\PaymentMethodReaderInterface $paymentMethodReader
-     */
     public function __construct(PaymentMethodReaderInterface $paymentMethodReader)
     {
         $this->paymentMethodReader = $paymentMethodReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return string|null
-     */
     public function getTransferEndpointUrl(OrderTransfer $orderTransfer): ?string
     {
         $paymentMethodTransfer = $this->paymentMethodReader->getPaymentMethodForOrder($orderTransfer);
@@ -69,12 +61,6 @@ class TransferEndpointReader implements TransferEndpointReaderInterface
         return null;
     }
 
-    /**
-     * @param string $endpointBaseUrl
-     * @param string $endpointPath
-     *
-     * @return string
-     */
     protected function buildEndpointUrl(
         string $endpointBaseUrl,
         string $endpointPath

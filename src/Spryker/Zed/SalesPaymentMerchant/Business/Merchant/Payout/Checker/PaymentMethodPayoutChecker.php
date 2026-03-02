@@ -27,10 +27,6 @@ class PaymentMethodPayoutChecker implements PaymentMethodPayoutCheckerInterface
      */
     protected SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInterface $transferEndpointReader
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader
-     */
     public function __construct(
         TransferEndpointReaderInterface $transferEndpointReader,
         SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader
@@ -39,12 +35,6 @@ class PaymentMethodPayoutChecker implements PaymentMethodPayoutCheckerInterface
         $this->salesPaymentMerchantPayoutReader = $salesPaymentMerchantPayoutReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $salesOrderItemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return bool
-     */
     public function isPayoutSupportedForPaymentMethodUsedForOrder(
         ItemTransfer $salesOrderItemTransfer,
         OrderTransfer $orderTransfer

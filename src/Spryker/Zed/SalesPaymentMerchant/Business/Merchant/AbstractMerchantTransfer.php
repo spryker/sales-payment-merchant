@@ -56,15 +56,6 @@ abstract class AbstractMerchantTransfer
      */
     protected SalesPaymentMerchantConfig $salesPaymentMerchantConfig;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Merchant\Calculator\MerchantPayoutCalculatorInterface $merchantPayoutCalculator
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInterface $transferEndpointReader
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Sender\TransferRequestSenderInterface $transferRequestSender
-     * @param \Spryker\Zed\SalesPaymentMerchant\Persistence\SalesPaymentMerchantEntityManagerInterface $salesPaymentMerchantEntityManager
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Expander\PaymentTransmissionItemExpanderInterface $paymentTransmissionItemExpander
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\OrderExpenseReaderInterface $orderExpenseReader
-     * @param \Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig $salesPaymentMerchantConfig
-     */
     public function __construct(
         MerchantPayoutCalculatorInterface $merchantPayoutCalculator,
         TransferEndpointReaderInterface $transferEndpointReader,
@@ -83,19 +74,8 @@ abstract class AbstractMerchantTransfer
         $this->salesPaymentMerchantConfig = $salesPaymentMerchantConfig;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return int
-     */
     abstract protected function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int;
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     abstract protected function savePaymentTransmissionResponse(
         PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
     ): void;
@@ -126,11 +106,6 @@ abstract class AbstractMerchantTransfer
         return $orderItemPaymentTransmissionItemTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return string
-     */
     protected function getItemReferences(
         PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
     ): string {

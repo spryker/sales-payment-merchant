@@ -17,11 +17,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class SalesPaymentMerchantEntityManager extends AbstractEntityManager implements SalesPaymentMerchantEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     public function saveSalesPaymentMerchantPayout(PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer): void
     {
         $salesPaymentMerchantPayoutEntity = new SpySalesPaymentMerchantPayout();
@@ -29,11 +24,6 @@ class SalesPaymentMerchantEntityManager extends AbstractEntityManager implements
         $salesPaymentMerchantPayoutEntity->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     public function saveSalesPaymentMerchantPayoutReversal(
         PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
     ): void {

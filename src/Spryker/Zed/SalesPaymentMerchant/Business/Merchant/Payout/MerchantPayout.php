@@ -46,23 +46,12 @@ class MerchantPayout extends AbstractMerchantTransfer implements MerchantPayoutI
         $this->executePayoutTransmissionTransaction($orderExpensePaymentTransmissionItemTransfers, $transferEndpointUrl);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     protected function savePaymentTransmissionResponse(
         PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
     ): void {
         $this->salesPaymentMerchantEntityManager->saveSalesPaymentMerchantPayout($paymentTransmissionResponseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return int
-     */
     protected function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int
     {
         return $this->merchantPayoutCalculator->calculatePayoutAmount($itemTransfer, $orderTransfer);

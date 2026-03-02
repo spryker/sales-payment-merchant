@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\PaymentMethodTransfer;
 
 interface PaymentMethodReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\PaymentMethodTransfer
-     */
     public function getPaymentMethodForOrder(OrderTransfer $orderTransfer): PaymentMethodTransfer;
 }

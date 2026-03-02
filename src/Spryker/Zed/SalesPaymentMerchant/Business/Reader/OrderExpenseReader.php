@@ -18,10 +18,6 @@ class OrderExpenseReader extends AbstractOrderExpenseReader
      */
     protected SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig $salesPaymentMerchantConfig
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader
-     */
     public function __construct(
         SalesPaymentMerchantConfig $salesPaymentMerchantConfig,
         SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader

@@ -12,11 +12,5 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface MerchantPayoutCalculatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return int
-     */
     public function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int;
 }

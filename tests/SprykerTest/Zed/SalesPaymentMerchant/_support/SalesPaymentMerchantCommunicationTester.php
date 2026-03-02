@@ -49,9 +49,6 @@ class SalesPaymentMerchantCommunicationTester extends Actor
 {
     use _generated\SalesPaymentMerchantCommunicationTesterActions;
 
-    /**
-     * @return void
-     */
     public function mockHydrateOrderPluginsInSalesModule(): void
     {
         $this->setDependency(SalesDependencyProvider::HYDRATE_ORDER_PLUGINS, [
@@ -59,9 +56,6 @@ class SalesPaymentMerchantCommunicationTester extends Actor
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function havePaymentProviderWithPaymentMethodSupportingPayouts(): void
     {
         $paymentProviderTransfer = $this->havePaymentProvider([
@@ -85,9 +79,6 @@ class SalesPaymentMerchantCommunicationTester extends Actor
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function havePaymentProviderWithPaymentMethod(): void
     {
         $paymentProviderTransfer = $this->havePaymentProvider([
@@ -102,13 +93,6 @@ class SalesPaymentMerchantCommunicationTester extends Actor
         ]);
     }
 
-    /**
-     * @param array $orderItems
-     * @param string|null $merchantReference
-     * @param string|null $orderReference
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
-     */
     public function mockSalesOrderEntity(
         array $orderItems,
         ?string $merchantReference = null,

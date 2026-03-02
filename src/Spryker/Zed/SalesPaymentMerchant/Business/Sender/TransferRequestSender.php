@@ -25,10 +25,6 @@ class TransferRequestSender implements TransferRequestSenderInterface
      */
     protected SalesPaymentMerchantToUtilEncodingServiceInterface $utilEncodingService;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToKernelAppFacadeInterface $kernelAppFacade
-     * @param \Spryker\Zed\SalesPaymentMerchant\Dependency\Service\SalesPaymentMerchantToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(
         SalesPaymentMerchantToKernelAppFacadeInterface $kernelAppFacade,
         SalesPaymentMerchantToUtilEncodingServiceInterface $utilEncodingService

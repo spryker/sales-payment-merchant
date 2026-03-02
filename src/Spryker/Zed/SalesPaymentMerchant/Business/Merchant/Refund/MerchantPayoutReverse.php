@@ -66,23 +66,12 @@ class MerchantPayoutReverse extends AbstractMerchantTransfer implements Merchant
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     protected function savePaymentTransmissionResponse(
         PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
     ): void {
         $this->salesPaymentMerchantEntityManager->saveSalesPaymentMerchantPayoutReversal($paymentTransmissionResponseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return int
-     */
     protected function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int
     {
         return $this->merchantPayoutCalculator->calculatePayoutAmount($itemTransfer, $orderTransfer) * -1;

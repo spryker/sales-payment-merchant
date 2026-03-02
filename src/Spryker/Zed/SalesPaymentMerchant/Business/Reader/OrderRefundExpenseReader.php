@@ -128,11 +128,6 @@ class OrderRefundExpenseReader extends AbstractOrderExpenseReader
         return isset($orderItemReferenceMap[$itemTransfer->getOrderItemReference()]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return int
-     */
     protected function getReverseAmount(ExpenseTransfer $expenseTransfer): int
     {
         $reverseAmount = $expenseTransfer->getRefundableAmount() !== 0 ? $expenseTransfer->getRefundableAmount() : $expenseTransfer->getCanceledAmountOrFail();

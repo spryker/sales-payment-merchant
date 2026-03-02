@@ -35,9 +35,6 @@ class IsMerchantRefundedConditionPluginTest extends Unit
      */
     protected SalesPaymentMerchantCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsTrueWhenSalesOrderItemWasPaidOutToMerchant(): void
     {
         //Arrange
@@ -73,9 +70,6 @@ class IsMerchantRefundedConditionPluginTest extends Unit
         $this->assertTrue($condition->check($salesOrderItemEntity));
     }
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsFalseWhenSalesOrderItemWasNotPaidOutToMerchant(): void
     {
         //Arrange
@@ -101,9 +95,6 @@ class IsMerchantRefundedConditionPluginTest extends Unit
         $this->assertFalse($condition->check($salesOrderItemEntity));
     }
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsTrueWhenPaymentMethodDoesNotSupportMerchantPayouts(): void
     {
         //Arrange

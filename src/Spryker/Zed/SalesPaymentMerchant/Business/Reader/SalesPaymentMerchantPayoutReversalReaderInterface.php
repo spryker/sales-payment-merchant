@@ -11,13 +11,6 @@ use Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCollectionTransf
 
 interface SalesPaymentMerchantPayoutReversalReaderInterface
 {
-    /**
-     * @param string $orderReference
-     * @param string $merchantReference
-     * @param bool $isSuccessful
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutReversalCollectionByMerchantAndOrderReference(
         string $orderReference,
         string $merchantReference,

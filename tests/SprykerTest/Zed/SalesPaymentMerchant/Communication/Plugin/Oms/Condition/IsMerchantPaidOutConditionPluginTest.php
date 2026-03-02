@@ -35,9 +35,6 @@ class IsMerchantPaidOutConditionPluginTest extends Unit
      */
     protected SalesPaymentMerchantCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsTrueWhenSalesOrderItemWasPaidOutToMerchant(): void
     {
         //Arrange
@@ -72,9 +69,6 @@ class IsMerchantPaidOutConditionPluginTest extends Unit
         $this->assertTrue($condition->check($salesOrderItemEntity));
     }
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsFalseWhenSalesOrderItemWasNotPaidOutToMerchant(): void
     {
         //Arrange
@@ -100,9 +94,6 @@ class IsMerchantPaidOutConditionPluginTest extends Unit
         $this->assertFalse($condition->check($salesOrderItemEntity));
     }
 
-    /**
-     * @return void
-     */
     public function testCheckReturnsTrueWhenPaymentMethodDoesNotSupportMerchantPayouts(): void
     {
         //Arrange

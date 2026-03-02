@@ -23,10 +23,6 @@ class MerchantPayoutCalculator implements MerchantPayoutCalculatorInterface
      */
     protected MerchantPayoutCalculatorPluginInterface $amountCalculatorFallback;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface $amountCalculatorFallback
-     * @param \Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface|null $amountCalculatorPlugin
-     */
     public function __construct(
         MerchantPayoutCalculatorPluginInterface $amountCalculatorFallback,
         ?MerchantPayoutCalculatorPluginInterface $amountCalculatorPlugin
@@ -35,12 +31,6 @@ class MerchantPayoutCalculator implements MerchantPayoutCalculatorInterface
         $this->amountCalculatorPlugin = $amountCalculatorPlugin;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return int
-     */
     public function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int
     {
         if ($this->amountCalculatorPlugin !== null) {

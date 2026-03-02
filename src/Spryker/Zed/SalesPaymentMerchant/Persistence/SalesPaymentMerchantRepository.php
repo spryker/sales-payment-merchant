@@ -24,11 +24,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
  */
 class SalesPaymentMerchantRepository extends AbstractRepository implements SalesPaymentMerchantRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutCollection(
         SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
     ): SalesPaymentMerchantPayoutCollectionTransfer {
@@ -68,12 +63,6 @@ class SalesPaymentMerchantRepository extends AbstractRepository implements Sales
             );
     }
 
-    /**
-     * @param \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutQuery $salesPaymentMerchantPayoutQuery
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
-     *
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutQuery
-     */
     protected function applySalesPaymentMerchantPayoutFilters(
         SpySalesPaymentMerchantPayoutQuery $salesPaymentMerchantPayoutQuery,
         SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
@@ -113,11 +102,6 @@ class SalesPaymentMerchantRepository extends AbstractRepository implements Sales
         return $salesPaymentMerchantPayoutQuery;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutReversalCollection(
         SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
     ): SalesPaymentMerchantPayoutReversalCollectionTransfer {
@@ -155,12 +139,6 @@ class SalesPaymentMerchantRepository extends AbstractRepository implements Sales
             );
     }
 
-    /**
-     * @param \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutReversalQuery $salesPaymentMerchantPayoutReversalQuery
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
-     *
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutReversalQuery
-     */
     protected function applySalesPaymentMerchantPayoutReversalFilters(
         SpySalesPaymentMerchantPayoutReversalQuery $salesPaymentMerchantPayoutReversalQuery,
         SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
@@ -208,12 +186,6 @@ class SalesPaymentMerchantRepository extends AbstractRepository implements Sales
         return $modelCriteria;
     }
 
-    /**
-     * @param \Propel\Runtime\ActiveQuery\ModelCriteria $modelCriteria
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function applyPagination(
         ModelCriteria $modelCriteria,
         PaginationTransfer $paginationTransfer

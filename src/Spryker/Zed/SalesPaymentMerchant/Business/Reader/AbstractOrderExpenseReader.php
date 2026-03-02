@@ -19,22 +19,12 @@ abstract class AbstractOrderExpenseReader implements OrderExpenseReaderInterface
      */
     protected SalesPaymentMerchantConfig $salesPaymentMerchantConfig;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig $salesPaymentMerchantConfig
-     */
     public function __construct(
         SalesPaymentMerchantConfig $salesPaymentMerchantConfig
     ) {
         $this->salesPaymentMerchantConfig = $salesPaymentMerchantConfig;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param int $amount
-     *
-     * @return \Generated\Shared\Transfer\PaymentTransmissionItemTransfer
-     */
     protected function createOrderExpensePaymentTransmissionItemTransfer(
         ExpenseTransfer $expenseTransfer,
         OrderTransfer $orderTransfer,

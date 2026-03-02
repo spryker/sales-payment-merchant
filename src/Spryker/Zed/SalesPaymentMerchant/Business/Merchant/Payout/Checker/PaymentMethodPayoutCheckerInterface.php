@@ -12,12 +12,6 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface PaymentMethodPayoutCheckerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $salesOrderItemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return bool
-     */
     public function isPayoutSupportedForPaymentMethodUsedForOrder(
         ItemTransfer $salesOrderItemTransfer,
         OrderTransfer $orderTransfer

@@ -27,10 +27,6 @@ class PaymentMethodPayoutReverseChecker implements PaymentMethodPayoutReverseChe
      */
     protected SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInterface $transferEndpointReader
-     * @param \Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader
-     */
     public function __construct(
         TransferEndpointReaderInterface $transferEndpointReader,
         SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader
@@ -39,12 +35,6 @@ class PaymentMethodPayoutReverseChecker implements PaymentMethodPayoutReverseChe
         $this->salesPaymentMerchantPayoutReversalReader = $salesPaymentMerchantPayoutReversalReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $salesOrderItemTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return bool
-     */
     public function isPayoutReversalSupportedForPaymentMethodUsedForOrder(
         ItemTransfer $salesOrderItemTransfer,
         OrderTransfer $orderTransfer

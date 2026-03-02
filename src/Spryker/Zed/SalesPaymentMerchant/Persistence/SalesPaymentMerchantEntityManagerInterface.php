@@ -11,17 +11,7 @@ use Generated\Shared\Transfer\PaymentTransmissionResponseTransfer;
 
 interface SalesPaymentMerchantEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     public function saveSalesPaymentMerchantPayout(PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer
-     *
-     * @return void
-     */
     public function saveSalesPaymentMerchantPayoutReversal(PaymentTransmissionResponseTransfer $paymentTransmissionResponseTransfer): void;
 }

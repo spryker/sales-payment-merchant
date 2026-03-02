@@ -67,9 +67,6 @@ class MerchantPayoutCommandPluginTest extends Unit
      */
     protected PaymentProviderTransfer $paymentProviderTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -120,9 +117,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $this->tester->assertIsArray($result);
     }
 
-    /**
-     * @return void
-     */
     public function testGivenAnOrderWithOneOrderItemFromAMerchantWhenTheCommandIsExecutedAndTheExternalPSPReturnsASuccessfulResponseThenAllOrderItemsOfThisMerchantArePersisted(): void
     {
         // Arrange
@@ -146,9 +140,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $this->tester->assertSalesPaymentMerchantPayoutEntity($this->merchantReference, $this->orderReference, [$salesOrderItemWithMerchant->getOrderItemReference()]);
     }
 
-    /**
-     * @return void
-     */
     public function testAmountCalculatorPluginIsCalledWhenPluggedIn(): void
     {
         // Arrange
@@ -179,9 +170,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($orderItems, $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpenseAreNotSentWhenOrderExpenseIncludedInPaymentProcessIsDisabled(): void
     {
         // Arrange
@@ -212,9 +200,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($orderItems, $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreSentWhenOrderExpenseIncludedInPaymentProcessIsEnabled(): void
     {
         // Arrange
@@ -250,9 +235,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $this->tester->assertSalesPaymentMerchantPayoutEntity($this->merchantReference, $this->orderReference, [$shipmentExpenseTransfer->getUuid()]);
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentWhenAlreadySentForThisOrder(): void
     {
         // Arrange
@@ -286,9 +268,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($salesOrderEntity->getItems()->getArrayCopy(), $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentWhenTheOrderItemOfAnotherMerchantIsSentForMarketplaceOrder(): void
     {
         // Arrange
@@ -317,9 +296,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($salesOrderEntity->getItems()->getArrayCopy(), $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesAreNotSentWhenTheyAreNotRelatedToTheMerchantOrder(): void
     {
         // Arrange
@@ -347,9 +323,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($salesOrderEntity->getItems()->getArrayCopy(), $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     public function testOrderExpensesWithShipmentTypeAreNotSentWhenTheyAreExcludedForTheGivenStore(): void
     {
         // Arrange
@@ -375,9 +348,6 @@ class MerchantPayoutCommandPluginTest extends Unit
         $merchantPayoutCommandPlugin->run($salesOrderEntity->getItems()->getArrayCopy(), $salesOrderEntity, new ReadOnlyArrayObject([]));
     }
 
-    /**
-     * @return void
-     */
     protected function mockKernelAppFacadeMakeRequestOnce(): void
     {
         $transferRequestSenderMock = $this->createMock(KernelAppFacadeInterface::class);

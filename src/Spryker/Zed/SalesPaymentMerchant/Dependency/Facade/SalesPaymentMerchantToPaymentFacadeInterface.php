@@ -12,18 +12,7 @@ use Generated\Shared\Transfer\PaymentMethodCriteriaTransfer;
 
 interface SalesPaymentMerchantToPaymentFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PaymentMethodCriteriaTransfer $paymentMethodCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\PaymentMethodCollectionTransfer
-     */
     public function getPaymentMethodCollection(PaymentMethodCriteriaTransfer $paymentMethodCriteriaTransfer): PaymentMethodCollectionTransfer;
 
-    /**
-     * @param string $paymentProvider
-     * @param string $paymentMethod
-     *
-     * @return string
-     */
     public function generatePaymentMethodKey(string $paymentProvider, string $paymentMethod): string;
 }

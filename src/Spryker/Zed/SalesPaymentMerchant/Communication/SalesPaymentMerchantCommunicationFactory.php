@@ -25,33 +25,21 @@ use Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantDependencyProvider;
  */
 class SalesPaymentMerchantCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Communication\Reader\SalesOrderReaderInterface
-     */
     public function createSalesOrderReader(): SalesOrderReaderInterface
     {
         return new SalesOrderReader($this->getSalesFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Communication\Extractor\SalesOrderItemExtractorInterface
-     */
     public function createSalesOrderItemExtractor(): SalesOrderItemExtractorInterface
     {
         return new SalesOrderItemExtractor();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Communication\Mapper\SalesOrderMapperInterface
-     */
     public function createSalesOrderMapper(): SalesOrderMapperInterface
     {
         return new SalesOrderMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSalesFacadeInterface
-     */
     public function getSalesFacade(): SalesPaymentMerchantToSalesFacadeInterface
     {
         return $this->getProvidedDependency(SalesPaymentMerchantDependencyProvider::FACADE_SALES);

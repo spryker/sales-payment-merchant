@@ -14,20 +14,10 @@ use Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCriteriaTransfer
 
 interface SalesPaymentMerchantRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutCollection(
         SalesPaymentMerchantPayoutCriteriaTransfer $salesPaymentMerchantPayoutCriteriaTransfer
     ): SalesPaymentMerchantPayoutCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutReversalCollection(
         SalesPaymentMerchantPayoutReversalCriteriaTransfer $salesPaymentMerchantPayoutReversalCriteriaTransfer
     ): SalesPaymentMerchantPayoutReversalCollectionTransfer;

@@ -22,13 +22,6 @@ interface SalesPaymentMerchantPayoutReaderInterface
         array $merchantReferences
     ): SalesPaymentMerchantPayoutCollectionTransfer;
 
-    /**
-     * @param string $orderReference
-     * @param string $merchantReference
-     * @param bool $isSuccessful
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutCollectionByMerchantAndOrderReference(
         string $orderReference,
         string $merchantReference,

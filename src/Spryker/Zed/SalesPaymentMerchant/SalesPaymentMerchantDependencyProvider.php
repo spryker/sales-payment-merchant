@@ -57,11 +57,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
      */
     public const PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR = 'PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = $this->addAppKernelFacade($container);
@@ -75,11 +70,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
@@ -88,11 +78,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addAppKernelFacade(Container $container): Container
     {
         $container->set(static::FACADE_KERNEL_APP, function (Container $container) {
@@ -102,11 +87,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPaymentFacade(Container $container): Container
     {
         $container->set(static::FACADE_PAYMENT, function (Container $container) {
@@ -116,11 +96,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSalesPaymentFacade(Container $container): Container
     {
         $container->set(static::FACADE_SALES_PAYMENT, function (Container $container) {
@@ -130,11 +105,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSalesFacade(Container $container): Container
     {
         $container->set(static::FACADE_SALES, function (Container $container): SalesPaymentMerchantToSalesFacadeInterface {
@@ -144,11 +114,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilEncodingService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
@@ -158,11 +123,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantPayoutAmountCalculatorPlugin(Container $container): Container
     {
         $container->set(static::PLUGIN_MERCHANT_PAYOUT_AMOUNT_CALCULATOR, function (Container $container) {
@@ -172,11 +132,6 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantPayoutReverseAmountCalculatorPlugin(Container $container): Container
     {
         $container->set(static::PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR, function (Container $container) {
@@ -186,17 +141,11 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         return $container;
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface|null
-     */
     protected function getMerchantPayoutAmountCalculatorPlugin(): ?MerchantPayoutCalculatorPluginInterface
     {
         return null;
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface|null
-     */
     protected function getMerchantPayoutReverseAmountCalculatorPlugin(): ?MerchantPayoutCalculatorPluginInterface
     {
         return null;

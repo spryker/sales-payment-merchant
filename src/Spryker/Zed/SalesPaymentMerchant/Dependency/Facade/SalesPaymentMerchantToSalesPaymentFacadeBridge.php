@@ -25,11 +25,6 @@ class SalesPaymentMerchantToSalesPaymentFacadeBridge implements SalesPaymentMerc
         $this->salesPaymentFacade = $salesPaymentFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentCriteriaTransfer $salesPaymentCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentCollectionTransfer
-     */
     public function getSalesPaymentCollection(SalesPaymentCriteriaTransfer $salesPaymentCriteriaTransfer): SalesPaymentCollectionTransfer
     {
         return $this->salesPaymentFacade->getSalesPaymentCollection($salesPaymentCriteriaTransfer);

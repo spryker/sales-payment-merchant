@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\SalesPaymentCriteriaTransfer;
 
 interface SalesPaymentMerchantToSalesPaymentFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SalesPaymentCriteriaTransfer $salesPaymentCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentCollectionTransfer
-     */
     public function getSalesPaymentCollection(SalesPaymentCriteriaTransfer $salesPaymentCriteriaTransfer): SalesPaymentCollectionTransfer;
 }

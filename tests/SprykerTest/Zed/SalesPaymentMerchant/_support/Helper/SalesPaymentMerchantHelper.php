@@ -19,11 +19,6 @@ use SprykerTest\Shared\Testify\Helper\AbstractHelper;
 
 class SalesPaymentMerchantHelper extends AbstractHelper
 {
-    /**
-     * @param string|null $merchantReference
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem
-     */
     public function createSalesOrderItemEntity(?string $merchantReference = null): SpySalesOrderItem
     {
         $orderItemReference = Uuid::uuid4()->toString();
@@ -37,11 +32,6 @@ class SalesPaymentMerchantHelper extends AbstractHelper
         return $salesOrderItemEntity;
     }
 
-    /**
-     * @param array $seed
-     *
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayout
-     */
     public function haveSalesPaymentMerchantPayoutPersisted(array $seed): SpySalesPaymentMerchantPayout
     {
         $spySalesMerchantPayoutEntity = new SpySalesPaymentMerchantPayout();
@@ -51,11 +41,6 @@ class SalesPaymentMerchantHelper extends AbstractHelper
         return $spySalesMerchantPayoutEntity;
     }
 
-    /**
-     * @param array $seed
-     *
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutReversal
-     */
     public function haveSalesPaymentMerchantPayoutReversalPersisted(array $seed): SpySalesPaymentMerchantPayoutReversal
     {
         $spySalesPaymentMerchantPayoutReversal = new SpySalesPaymentMerchantPayoutReversal();
@@ -65,11 +50,6 @@ class SalesPaymentMerchantHelper extends AbstractHelper
         return $spySalesPaymentMerchantPayoutReversal;
     }
 
-    /**
-     * @param array $seed
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
-     */
     public function createSalesOrderEntity(array $seed): SpySalesOrder
     {
         $orderReference = Uuid::uuid4()->toString();

@@ -19,21 +19,11 @@ class SalesPaymentMerchantPayoutReversalReader implements SalesPaymentMerchantPa
      */
     protected SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Persistence\SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository
-     */
     public function __construct(SalesPaymentMerchantRepositoryInterface $salesPaymentMerchantRepository)
     {
         $this->salesPaymentMerchantRepository = $salesPaymentMerchantRepository;
     }
 
-    /**
-     * @param string $orderReference
-     * @param string $merchantReference
-     * @param bool $isSuccessful
-     *
-     * @return \Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalCollectionTransfer
-     */
     public function getSalesPaymentMerchantPayoutReversalCollectionByMerchantAndOrderReference(
         string $orderReference,
         string $merchantReference,

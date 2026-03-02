@@ -18,9 +18,6 @@ class SalesOrderReader implements SalesOrderReaderInterface
      */
     protected SalesPaymentMerchantToSalesFacadeInterface $salesFacade;
 
-    /**
-     * @param \Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSalesFacadeInterface $salesFacade
-     */
     public function __construct(SalesPaymentMerchantToSalesFacadeInterface $salesFacade)
     {
         $this->salesFacade = $salesFacade;

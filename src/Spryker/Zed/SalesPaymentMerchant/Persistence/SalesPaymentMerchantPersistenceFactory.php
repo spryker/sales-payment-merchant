@@ -20,33 +20,21 @@ use Spryker\Zed\SalesPaymentMerchant\Persistence\Propel\Mapper\SalesPaymentMerch
  */
 class SalesPaymentMerchantPersistenceFactory extends AbstractPersistenceFactory
 {
-    /**
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutQuery
-     */
     public function getSalesPaymentMerchantPayoutQuery(): SpySalesPaymentMerchantPayoutQuery
     {
         return SpySalesPaymentMerchantPayoutQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\SalesPaymentMerchant\Persistence\SpySalesPaymentMerchantPayoutReversalQuery
-     */
     public function getSalesPaymentMerchantPayoutReversalQuery(): SpySalesPaymentMerchantPayoutReversalQuery
     {
         return SpySalesPaymentMerchantPayoutReversalQuery::create();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Persistence\Propel\Mapper\SalesPaymentMerchantPayoutMapper
-     */
     public function createSalesPaymentMerchantPayoutMapper(): SalesPaymentMerchantPayoutMapper
     {
         return new SalesPaymentMerchantPayoutMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesPaymentMerchant\Persistence\Propel\Mapper\SalesPaymentMerchantPayoutReversalMapper
-     */
     public function createSalesPaymentMerchantPayoutReversalMapper(): SalesPaymentMerchantPayoutReversalMapper
     {
         return new SalesPaymentMerchantPayoutReversalMapper();
