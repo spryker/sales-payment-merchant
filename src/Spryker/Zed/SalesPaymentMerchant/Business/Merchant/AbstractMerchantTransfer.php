@@ -10,6 +10,7 @@ namespace Spryker\Zed\SalesPaymentMerchant\Business\Merchant;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentTransmissionItemTransfer;
+use Generated\Shared\Transfer\PaymentTransmissionResponseCollectionTransfer;
 use Generated\Shared\Transfer\PaymentTransmissionResponseTransfer;
 use Spryker\Zed\SalesPaymentMerchant\Business\Expander\PaymentTransmissionItemExpanderInterface;
 use Spryker\Zed\SalesPaymentMerchant\Business\Merchant\Calculator\MerchantPayoutCalculatorInterface;
@@ -18,6 +19,7 @@ use Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInter
 use Spryker\Zed\SalesPaymentMerchant\Business\Sender\TransferRequestSenderInterface;
 use Spryker\Zed\SalesPaymentMerchant\Persistence\SalesPaymentMerchantEntityManagerInterface;
 use Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig;
+use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutTransmissionPluginInterface;
 
 abstract class AbstractMerchantTransfer
 {
@@ -56,6 +58,8 @@ abstract class AbstractMerchantTransfer
      */
     protected SalesPaymentMerchantConfig $salesPaymentMerchantConfig;
 
+    protected ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin;
+
     public function __construct(
         MerchantPayoutCalculatorInterface $merchantPayoutCalculator,
         TransferEndpointReaderInterface $transferEndpointReader,
@@ -63,7 +67,8 @@ abstract class AbstractMerchantTransfer
         SalesPaymentMerchantEntityManagerInterface $salesPaymentMerchantEntityManager,
         PaymentTransmissionItemExpanderInterface $paymentTransmissionItemExpander,
         OrderExpenseReaderInterface $orderExpenseReader,
-        SalesPaymentMerchantConfig $salesPaymentMerchantConfig
+        SalesPaymentMerchantConfig $salesPaymentMerchantConfig,
+        ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin = null
     ) {
         $this->merchantPayoutCalculator = $merchantPayoutCalculator;
         $this->transferEndpointReader = $transferEndpointReader;
@@ -72,6 +77,7 @@ abstract class AbstractMerchantTransfer
         $this->paymentTransmissionItemExpander = $paymentTransmissionItemExpander;
         $this->orderExpenseReader = $orderExpenseReader;
         $this->salesPaymentMerchantConfig = $salesPaymentMerchantConfig;
+        $this->merchantPayoutTransmissionPlugin = $merchantPayoutTransmissionPlugin;
     }
 
     abstract protected function calculatePayoutAmount(ItemTransfer $itemTransfer, OrderTransfer $orderTransfer): int;
@@ -123,17 +129,15 @@ abstract class AbstractMerchantTransfer
 
     /**
      * @param list<\Generated\Shared\Transfer\PaymentTransmissionItemTransfer> $paymentTransmissionItemTransfers
-     * @param string $transferEndpointUrl
-     *
-     * @return void
      */
     protected function executePayoutTransmissionTransaction(
         array $paymentTransmissionItemTransfers,
-        string $transferEndpointUrl
+        OrderTransfer $orderTransfer,
+        ?string $transferEndpointUrl = null
     ): void {
-        $transferRequestData = $this->createTransferRequestData($paymentTransmissionItemTransfers);
-        $paymentTransmissionResponseCollectionTransfer = $this->transferRequestSender->requestTransfer(
-            $transferRequestData,
+        $paymentTransmissionResponseCollectionTransfer = $this->sendTransmissionRequest(
+            $paymentTransmissionItemTransfers,
+            $orderTransfer,
             $transferEndpointUrl,
         );
 
@@ -143,6 +147,29 @@ abstract class AbstractMerchantTransfer
 
             $this->savePaymentTransmissionResponse($paymentTransmissionResponseTransfer);
         }
+    }
+
+    /**
+     * @param list<\Generated\Shared\Transfer\PaymentTransmissionItemTransfer> $paymentTransmissionItemTransfers
+     */
+    protected function sendTransmissionRequest(
+        array $paymentTransmissionItemTransfers,
+        OrderTransfer $orderTransfer,
+        ?string $transferEndpointUrl = null
+    ): PaymentTransmissionResponseCollectionTransfer {
+        if ($this->merchantPayoutTransmissionPlugin !== null) {
+            return $this->merchantPayoutTransmissionPlugin->executePayoutTransmission(
+                $paymentTransmissionItemTransfers,
+                $orderTransfer,
+            );
+        }
+
+        $transferRequestData = $this->createTransferRequestData($paymentTransmissionItemTransfers);
+
+        return $this->transferRequestSender->requestTransfer(
+            $transferRequestData,
+            $transferEndpointUrl,
+        );
     }
 
     /**

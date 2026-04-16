@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\SalesPaymentMerchantPayoutTransfer;
 use Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReaderInterface;
 use Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInterface;
 use Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig;
+use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutTransmissionPluginInterface;
 
 class PaymentMethodPayoutChecker implements PaymentMethodPayoutCheckerInterface
 {
@@ -27,12 +28,16 @@ class PaymentMethodPayoutChecker implements PaymentMethodPayoutCheckerInterface
      */
     protected SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader;
 
+    protected ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin;
+
     public function __construct(
         TransferEndpointReaderInterface $transferEndpointReader,
-        SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader
+        SalesPaymentMerchantPayoutReaderInterface $salesPaymentMerchantPayoutReader,
+        ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin = null
     ) {
         $this->transferEndpointReader = $transferEndpointReader;
         $this->salesPaymentMerchantPayoutReader = $salesPaymentMerchantPayoutReader;
+        $this->merchantPayoutTransmissionPlugin = $merchantPayoutTransmissionPlugin;
     }
 
     public function isPayoutSupportedForPaymentMethodUsedForOrder(
@@ -43,9 +48,12 @@ class PaymentMethodPayoutChecker implements PaymentMethodPayoutCheckerInterface
             return true;
         }
 
-        $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
-        if (!$transferEndpointUrl) {
-            return true;
+        if ($this->merchantPayoutTransmissionPlugin === null) {
+            $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
+
+            if (!$transferEndpointUrl) {
+                return true;
+            }
         }
 
         $salesPaymentMerchantPayoutCollectionTransfer = $this->salesPaymentMerchantPayoutReader->getSalesPaymentMerchantPayoutCollectionByMerchantAndOrderReference(

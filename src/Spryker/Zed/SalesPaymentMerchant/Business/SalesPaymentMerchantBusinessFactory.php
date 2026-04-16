@@ -42,6 +42,7 @@ use Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSal
 use Spryker\Zed\SalesPaymentMerchant\Dependency\Service\SalesPaymentMerchantToUtilEncodingServiceInterface;
 use Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantDependencyProvider;
 use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface;
+use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutTransmissionPluginInterface;
 
 /**
  * @method \Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig getConfig()
@@ -60,6 +61,7 @@ class SalesPaymentMerchantBusinessFactory extends AbstractBusinessFactory
             $this->createPaymentTransmissionItemExpander(),
             $this->createOrderExpenseReader(),
             $this->getConfig(),
+            $this->getMerchantPayoutTransmissionPlugin(),
         );
     }
 
@@ -73,6 +75,7 @@ class SalesPaymentMerchantBusinessFactory extends AbstractBusinessFactory
             $this->createPaymentTransmissionItemExpander(),
             $this->createOrderRefundExpenseReader(),
             $this->getConfig(),
+            $this->getMerchantPayoutTransmissionPlugin(),
         );
     }
 
@@ -145,6 +148,7 @@ class SalesPaymentMerchantBusinessFactory extends AbstractBusinessFactory
         return new PaymentMethodPayoutChecker(
             $this->createTransferEndpointReader(),
             $this->createSalesPaymentMerchantPayoutReader(),
+            $this->getMerchantPayoutTransmissionPlugin(),
         );
     }
 
@@ -153,6 +157,7 @@ class SalesPaymentMerchantBusinessFactory extends AbstractBusinessFactory
         return new PaymentMethodPayoutReverseChecker(
             $this->createTransferEndpointReader(),
             $this->createSalesPaymentMerchantPayoutReversalReader(),
+            $this->getMerchantPayoutTransmissionPlugin(),
         );
     }
 
@@ -199,5 +204,10 @@ class SalesPaymentMerchantBusinessFactory extends AbstractBusinessFactory
     public function getMerchantPayoutReverseAmountCalculatorPlugin(): ?MerchantPayoutCalculatorPluginInterface
     {
         return $this->getProvidedDependency(SalesPaymentMerchantDependencyProvider::PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR);
+    }
+
+    public function getMerchantPayoutTransmissionPlugin(): ?MerchantPayoutTransmissionPluginInterface
+    {
+        return $this->getProvidedDependency(SalesPaymentMerchantDependencyProvider::PLUGIN_MERCHANT_PAYOUT_TRANSMISSION);
     }
 }

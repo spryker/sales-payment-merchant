@@ -47,6 +47,10 @@ class OrderExpenseReader extends AbstractOrderExpenseReader
             );
 
         foreach ($expenseTransfers as $expenseTransfer) {
+            if ($expenseTransfer->getSumPriceToPayAggregation() === 0) {
+                continue;
+            }
+
             if ($this->isExpenseHasBeenPaidOut($expenseTransfer, $salesPaymentMerchantPayoutMapByItemReferencesForPaidOutExpenses)) {
                 continue;
             }

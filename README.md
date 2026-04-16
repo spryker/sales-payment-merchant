@@ -3,13 +3,19 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.3-8892BF.svg)](https://php.net/)
 
 The module provides plugins for:
- - [Oms] Sending payout requests to PSP Apps.
+ - [Oms] Sending payouts (transfers) from Marketplace to merchants using payment providers.
 
 ## Installation
 
 ```
 composer require spryker/sales-payment-merchant
 ```
+
 ## Documentation
 
 [Spryker Documentation](https://docs.spryker.com)
+
+
+## Useful Additions
+
+`spryker/sales-payment-merchant-sales-merchant-commission` to configure behavior of merchant payments excluding marketplace commission.

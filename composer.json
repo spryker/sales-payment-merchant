@@ -29,7 +29,8 @@
         "spryker/testify": "*"
     },
     "suggest": {
-        "spryker/oms": "When you want to use the Command and Condition plugins of this module"
+        "spryker/oms": "When you want to use the Command and Condition plugins of this module",
+        "spryker/sales-payment-merchant-sales-merchant-commission": "To configure behavior of merchant payments excluding marketplace commission."
     },
     "autoload": {
         "psr-4": {

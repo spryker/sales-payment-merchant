@@ -35,13 +35,10 @@ class TransferRequestSender implements TransferRequestSenderInterface
 
     /**
      * @param array<string, array<int, array<string, mixed>>|int> $transferRequestData
-     * @param string $transferEndpoint
-     *
-     * @return \Generated\Shared\Transfer\PaymentTransmissionResponseCollectionTransfer
      */
     public function requestTransfer(
         array $transferRequestData,
-        string $transferEndpoint
+        ?string $transferEndpoint
     ): PaymentTransmissionResponseCollectionTransfer {
         $acpHttpRequestTransfer = $this->createAcpHttpRequestTransfer($transferEndpoint, $transferRequestData);
         $acpHttpResponseTransfer = $this->kernelAppFacade->makeRequest($acpHttpRequestTransfer);
@@ -58,13 +55,10 @@ class TransferRequestSender implements TransferRequestSenderInterface
     }
 
     /**
-     * @param string $transferEndpoint
      * @param array<string, array<int, array<string, mixed>>|int> $transferRequestData
-     *
-     * @return \Generated\Shared\Transfer\AcpHttpRequestTransfer
      */
     public function createAcpHttpRequestTransfer(
-        string $transferEndpoint,
+        ?string $transferEndpoint,
         array $transferRequestData
     ): AcpHttpRequestTransfer {
         return (new AcpHttpRequestTransfer())

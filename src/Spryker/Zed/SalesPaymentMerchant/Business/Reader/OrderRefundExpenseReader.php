@@ -28,6 +28,10 @@ class OrderRefundExpenseReader extends AbstractOrderExpenseReader
         $expenseTransfers = $this->filterOutNonApplicableMerchantExpenses($orderTransfer, $orderItemPaymentTransmissionItemTransfers);
 
         foreach ($expenseTransfers as $expenseTransfer) {
+            if ($this->getReverseAmount($expenseTransfer) === 0) {
+                continue;
+            }
+
             if ($this->isExpenseForOrderWithUnrefusedItems($expenseTransfer, $merchantReferenceMapForUnRefusedItems)) {
                 continue;
             }

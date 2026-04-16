@@ -22,28 +22,35 @@ class MerchantPayout extends AbstractMerchantTransfer implements MerchantPayoutI
      */
     public function payoutMerchants(array $salesOrderItemTransfers, OrderTransfer $orderTransfer): void
     {
-        $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
-        if (!$transferEndpointUrl) {
-            return;
+        $transferEndpointUrl = null;
+
+        if ($this->merchantPayoutTransmissionPlugin === null) {
+            $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
+
+            if (!$transferEndpointUrl) {
+                return;
+            }
         }
 
         $orderItemPaymentTransmissionItemTransfers = $this->getOrderItemsForTransfer($salesOrderItemTransfers, $orderTransfer);
+
         if (count($orderItemPaymentTransmissionItemTransfers) === 0) {
             return;
         }
 
-        $this->executePayoutTransmissionTransaction($orderItemPaymentTransmissionItemTransfers, $transferEndpointUrl);
+        $this->executePayoutTransmissionTransaction($orderItemPaymentTransmissionItemTransfers, $orderTransfer, $transferEndpointUrl);
 
         if (!$this->salesPaymentMerchantConfig->isOrderExpenseIncludedInPaymentProcess()) {
             return;
         }
 
         $orderExpensePaymentTransmissionItemTransfers = $this->orderExpenseReader->getOrderExpensesForTransfer($orderTransfer, $orderItemPaymentTransmissionItemTransfers);
+
         if (count($orderExpensePaymentTransmissionItemTransfers) === 0) {
             return;
         }
 
-        $this->executePayoutTransmissionTransaction($orderExpensePaymentTransmissionItemTransfers, $transferEndpointUrl);
+        $this->executePayoutTransmissionTransaction($orderExpensePaymentTransmissionItemTransfers, $orderTransfer, $transferEndpointUrl);
     }
 
     protected function savePaymentTransmissionResponse(

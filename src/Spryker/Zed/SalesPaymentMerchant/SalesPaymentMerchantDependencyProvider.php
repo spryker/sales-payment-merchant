@@ -16,6 +16,7 @@ use Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSal
 use Spryker\Zed\SalesPaymentMerchant\Dependency\Facade\SalesPaymentMerchantToSalesPaymentFacadeBridge;
 use Spryker\Zed\SalesPaymentMerchant\Dependency\Service\SalesPaymentMerchantToUtilEncodingServiceBridge;
 use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutCalculatorPluginInterface;
+use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutTransmissionPluginInterface;
 
 /**
  * @method \Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig getConfig()
@@ -57,6 +58,8 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
      */
     public const PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR = 'PLUGIN_MERCHANT_PAYOUT_REVERSE_AMOUNT_CALCULATOR';
 
+    public const string PLUGIN_MERCHANT_PAYOUT_TRANSMISSION = 'PLUGIN_MERCHANT_PAYOUT_TRANSMISSION';
+
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = $this->addAppKernelFacade($container);
@@ -66,6 +69,7 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
         $container = $this->addUtilEncodingService($container);
         $container = $this->addMerchantPayoutAmountCalculatorPlugin($container);
         $container = $this->addMerchantPayoutReverseAmountCalculatorPlugin($container);
+        $container = $this->addMerchantPayoutTransmissionPlugin($container);
 
         return $container;
     }
@@ -147,6 +151,20 @@ class SalesPaymentMerchantDependencyProvider extends AbstractBundleDependencyPro
     }
 
     protected function getMerchantPayoutReverseAmountCalculatorPlugin(): ?MerchantPayoutCalculatorPluginInterface
+    {
+        return null;
+    }
+
+    protected function addMerchantPayoutTransmissionPlugin(Container $container): Container
+    {
+        $container->set(static::PLUGIN_MERCHANT_PAYOUT_TRANSMISSION, function (Container $container) {
+            return $this->getMerchantPayoutTransmissionPlugin();
+        });
+
+        return $container;
+    }
+
+    protected function getMerchantPayoutTransmissionPlugin(): ?MerchantPayoutTransmissionPluginInterface
     {
         return null;
     }

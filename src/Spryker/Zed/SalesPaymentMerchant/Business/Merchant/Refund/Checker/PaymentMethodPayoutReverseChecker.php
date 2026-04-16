@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\SalesPaymentMerchantPayoutReversalTransfer;
 use Spryker\Zed\SalesPaymentMerchant\Business\Reader\SalesPaymentMerchantPayoutReversalReaderInterface;
 use Spryker\Zed\SalesPaymentMerchant\Business\Reader\TransferEndpointReaderInterface;
 use Spryker\Zed\SalesPaymentMerchant\SalesPaymentMerchantConfig;
+use Spryker\Zed\SalesPaymentMerchantExtension\Communication\Dependency\Plugin\MerchantPayoutTransmissionPluginInterface;
 
 class PaymentMethodPayoutReverseChecker implements PaymentMethodPayoutReverseCheckerInterface
 {
@@ -27,12 +28,16 @@ class PaymentMethodPayoutReverseChecker implements PaymentMethodPayoutReverseChe
      */
     protected SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader;
 
+    protected ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin;
+
     public function __construct(
         TransferEndpointReaderInterface $transferEndpointReader,
-        SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader
+        SalesPaymentMerchantPayoutReversalReaderInterface $salesPaymentMerchantPayoutReversalReader,
+        ?MerchantPayoutTransmissionPluginInterface $merchantPayoutTransmissionPlugin = null
     ) {
         $this->transferEndpointReader = $transferEndpointReader;
         $this->salesPaymentMerchantPayoutReversalReader = $salesPaymentMerchantPayoutReversalReader;
+        $this->merchantPayoutTransmissionPlugin = $merchantPayoutTransmissionPlugin;
     }
 
     public function isPayoutReversalSupportedForPaymentMethodUsedForOrder(
@@ -43,9 +48,12 @@ class PaymentMethodPayoutReverseChecker implements PaymentMethodPayoutReverseChe
             return true;
         }
 
-        $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
-        if (!$transferEndpointUrl) {
-            return true;
+        if ($this->merchantPayoutTransmissionPlugin === null) {
+            $transferEndpointUrl = $this->transferEndpointReader->getTransferEndpointUrl($orderTransfer);
+
+            if (!$transferEndpointUrl) {
+                return true;
+            }
         }
 
         $salesPaymentMerchantPayoutReversalCollectionTransfer = $this->salesPaymentMerchantPayoutReversalReader->getSalesPaymentMerchantPayoutReversalCollectionByMerchantAndOrderReference(

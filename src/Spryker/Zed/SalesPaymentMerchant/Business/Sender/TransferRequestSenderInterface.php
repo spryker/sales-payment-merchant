@@ -13,12 +13,9 @@ interface TransferRequestSenderInterface
 {
     /**
      * @param array<string, array<int, array<string, mixed>>|int> $transferRequestData
-     * @param string $transferEndpoint
-     *
-     * @return \Generated\Shared\Transfer\PaymentTransmissionResponseCollectionTransfer
      */
     public function requestTransfer(
         array $transferRequestData,
-        string $transferEndpoint
+        ?string $transferEndpoint
     ): PaymentTransmissionResponseCollectionTransfer;
 }
