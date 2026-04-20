@@ -134,7 +134,7 @@ class OrderRefundExpenseReader extends AbstractOrderExpenseReader
 
     protected function getReverseAmount(ExpenseTransfer $expenseTransfer): int
     {
-        $reverseAmount = $expenseTransfer->getRefundableAmount() !== 0 ? $expenseTransfer->getRefundableAmount() : $expenseTransfer->getCanceledAmountOrFail();
+        $reverseAmount = $expenseTransfer->getRefundableAmount() !== 0 ? $expenseTransfer->getRefundableAmount() : $expenseTransfer->getCanceledAmount() ?? 0;
 
         return $reverseAmount * -1;
     }
