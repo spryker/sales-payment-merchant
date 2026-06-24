@@ -32,6 +32,8 @@ class SalesPaymentMerchantConfig extends AbstractBundleConfig
     public const PAYMENT_TRANSMISSION_ITEM_TYPE_ORDER_EXPENSE = 'order-expense';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const ITEM_REFERENCE_SEPARATOR = ',';
